@@ -1,0 +1,22 @@
+{
+  "name": "joyserver",
+  "version": "1.0.0",
+  "description": "A web server that serves pages that can be used as joystick input on the hosting machine (via vJoy).",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "btaggart@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^24.0.17",
+    "@types/node": "^12.6.9",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
