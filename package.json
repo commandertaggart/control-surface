@@ -4,7 +4,10 @@
   "description": "A web server that serves pages that can be used as joystick input on the hosting machine (via vJoy).",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack",
+    "run": "ts-node ./server/index.ts",
+    "start": "node run build && node run run"
   },
   "author": "btaggart@gmail.com",
   "license": "ISC",

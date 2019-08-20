@@ -5,6 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab'
 import Settings from '@material-ui/icons/Settings'
 import { CSSProperties } from '@material-ui/styles';
+import { AppMessage } from '../common/AppMessage';
 
 export interface IMainPageProps {
 
@@ -38,14 +39,45 @@ export class MainPage extends React.Component<IMainPageProps, IMainPageState> {
     public componentDidMount() {
         this._ws = new WebSocket(`ws://${this.state.host}/connect`)
 
+        window.addEventListener('message', (event: MessageEvent) => {
+            if (event.data && 'path' in event.data && 'event' in event.data) {
+                const data = event.data as AppMessage;
+                if (data.path.indexOf('%pageid%') >= 0) {
+                    const frames = document.querySelectorAll('iframe');
+                    Array.prototype.some.call(frames as unknown as Array<HTMLIFrameElement>, (f) => {
+                        if (f.contentWindow === event.source) {
+                            data.path = data.path.replace('%pageid%', f.id);
+                            return true;
+                        }
+                        return false;
+                    })
+                }
+                this._ws.send(event.data);
+            }
+        })
+
         this._ws.onopen = () => {
             // handle network init
-            this._ws.send('Hello')
         }
 
         this._ws.onmessage = (msg) => {
-            // handle incoming
-            console.log(msg)
+            const data: AppMessage = msg.data as AppMessage;
+
+            if (data && data.path) {
+                if (data.path.startsWith('/pages/')) {
+                    const page = data.path.split('/')[2];
+                    const frame = document.querySelector(`iframe#${page}`) as HTMLIFrameElement;
+                    frame.contentWindow.postMessage(data, '*');
+                }
+                else {
+                    const frames = document.querySelectorAll(`iframe`);
+                    for (let i = 0; i < frames.length; ++i) {
+                        if (frames[i].id !== 'config') {
+                            (frames[i] as HTMLIFrameElement).contentWindow.postMessage(data, '*')
+                        }
+                    }
+                }
+            }
         }
     }
 
