@@ -5,7 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab'
 import Settings from '@material-ui/icons/Settings'
 import { CSSProperties } from '@material-ui/styles';
-import { AppMessage } from '../common/AppMessage';
+import { AppMessage } from '../../common/AppMessage';
 
 export interface IMainPageProps {
 

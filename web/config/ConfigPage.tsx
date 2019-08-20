@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { AppMessage } from '../common/AppMessage';
+import { AppMessage } from '../../common/AppMessage';
 
 export interface IConfigPageProps {
 

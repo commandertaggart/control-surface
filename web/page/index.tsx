@@ -1,4 +1,4 @@
-import { AppMessage, AppEvent } from '../common/AppMessage';
+import { AppMessage, AppEvent } from '../../common/AppMessage';
 
 function initialize() {
     const send = (message: AppMessage) => {
