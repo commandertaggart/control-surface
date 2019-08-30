@@ -2,9 +2,9 @@ const path = require('path')
 
 module.exports = {
     entry: {
-        main: './web/main/index.tsx',
-        config: './web/config/index.tsx',
-        page: './web/page/index.tsx'
+        main: './web/main/index.ts',
+        config: './web/config/index.ts',
+        page: './web/page/index.ts'
     },
     devtool: 'inline-source-map',
     module: {

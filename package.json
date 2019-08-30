@@ -1,7 +1,7 @@
 {
-  "name": "joyserver",
+  "name": "control-surface",
   "version": "1.0.0",
-  "description": "A web server that serves pages that can be used as joystick input on the hosting machine (via vJoy).",
+  "description": "A web server that serves pages that can be used as input devices.",
   "main": "index.js",
   "scripts": {
     "test": "jest",
